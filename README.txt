@@ -1,7 +1,6 @@
 Note: Only codes (HTML, CSS, and Javascript) are uploaded in the github. The Web Application is accessible in the free hosted server netlify.
 Free Deployment Link: https://blitz-mini-games.netlify.app/
 
-
 BLITZ | A Mini Games Web Collection by Arcadia
 
 Welcome to BLITZ: A Mini Games Web Collection!
@@ -31,21 +30,13 @@ How to Use
 3. Choose a game from the arcade and start playing!
 
 Online Deployment
-This project was also deployed online for easy access. However, since it is hosted on a free platform, some games may experience loading delays, lags, or reduced performance. For best experience, we recommend downloading and running the project locally. 
+This project was also deployed online for easy access. However, since it is hosted on a free platform, some games may experience loading delays, lags, or reduced performance.
 Live Version: https://blitz-mini-games.netlify.app/
 
 Technologies Used
 • HTML
 • CSS
 • JavaScript
-
-Contributing
-Contributions, suggestions, and bug reports are welcome! Feel free to submit an issue or make requests for suggestions.
-
-Where Users Can Get Help
-When in need of assistance regarding the website, you may contact the team leader of the group through the following:
-Email: 2021313153@pampangastateu.edu.ph
-Facebook: https://www.facebook.com/danganangelaa/
 
 Credits
 This project features background music from the following sources:
@@ -60,5 +51,5 @@ Lozano, John Patrick
 Lugue, Earl James R.
 Mochizuki, Kanade S.
 Navarro, John Michael Y.
-
 Nolasco, Carl Japhet M.
+
