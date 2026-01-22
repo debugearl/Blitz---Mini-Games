@@ -1,3 +1,7 @@
+Note: Only codes (HTML, CSS, and Javascript) are uploaded in the github. The Web Application is accessible in the free hosted server netlify.
+Free Deployment Link: https://blitz-mini-games.netlify.app/
+
+
 BLITZ | A Mini Games Web Collection by Arcadia
 
 Welcome to BLITZ: A Mini Games Web Collection!
@@ -56,4 +60,5 @@ Lozano, John Patrick
 Lugue, Earl James R.
 Mochizuki, Kanade S.
 Navarro, John Michael Y.
+
 Nolasco, Carl Japhet M.
