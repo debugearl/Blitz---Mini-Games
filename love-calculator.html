@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Calculator</title>
+
+    <link rel="icon" href="../images/love-calcu_images/icon_love-calcu.png" />
+
+    <link rel="stylesheet" href="CSS/love-calculator.css" />
+    <script src="JS/love-calculator.js"></script>
+  </head>
+  <body>
+
+    <!-- Page transition effect for smooth animations -->
+    <div class="fade-overlay"></div>
+
+    <!-- Audio elements for playing background music based on calculation results -->
+    <audio id="kilig-music" src="sounds/love-calcu/alisa.m4a"></audio>
+    <audio id="sad-music" src="sounds/love-calcu/multo.m4a"></audio>
+
+    <!-- Back button -->
+    <button id="back-btn"></button>
+
+    <div id="content-box">
+      <h1>Love Calculator</h1>
+      <p>
+        Enter your name and your crush's name to see the chance that your
+        relationship could work out:
+      </p>
+      <br />
+
+      <!-- Input fields for user and crush names, required for calculation -->
+      <label for="your-name">Your Name: </label>
+      <input type="text" id="your-name" name="your-name" required /><br /><br />
+      <label for="crush-name">Your Crush's Name:</label>
+      <input
+        type="text"
+        id="crush-name"
+        name="crush-name"
+        required
+      /><br /><br />
+
+      <!-- Button to trigger the love calculation (handled by JavaScript) -->
+      <button id="calculate">Calculate</button>
+
+      <!-- Elements to display the calculation results: message, percentage, and comment -->
+      <h2 id="result-message"></h2>
+      <p id="result-percentage"></p>
+      <p id="result-comment"></p>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="confirm-box">
+      <div id="confirm-content">
+
+        <h3>Are you sure you want to go back to arcade?</h3>
+
+        <button id="yes-btn" class="confirm-btn">Yes</button>
+        <button id="no-btn" class="confirm-btn">No</button>
+      </div>
+    </div>
+    
+  </body>
+</html>

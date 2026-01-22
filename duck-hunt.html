@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Duck Hunt</title>
+    
+<!-- Press Start 2P Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/duck-hunt.css">
+    <link rel="icon" type="image/png" href="images/duckhunt/icon.png"/>
+</head>
+
+<body>
+<!-- --- START SCREEN --- -->
+    <div id="page-transition"></div>
+
+    <div class="start-screen" id="start-screen">
+        <h1 class="main-logo" style="color:#fffd36; text-align:center; font-size: 40px;">DUCK HUNT</h1>
+        
+        <div class="messageStyle">
+            <p class="message">Click to Start</p>
+            <br>
+            <p style="text-align: center; font-size: 12px; line-height: 20px;">
+                SHOOT AS MANY DUCKS<br>
+                AS YOU CAN IN<br>
+                <span style="color:red">30 SECONDS!</span>
+            </p>
+        </div>
+
+        <button class="start-back-btn" onclick="event.stopPropagation(); javascript:transitionToHomePage('index.html')">Back to Arcade</button>
+    </div>
+
+
+<!-- --- PAUSE MENU --- -->
+    <div class="pause-menu" id="pause-menu">
+        <div class="pause-content">
+            <h2>PAUSED</h2>
+            <button id="resume-btn">Resume</button>
+            <button id="restart-btn">Restart</button>
+            <button id="menu-btn" onclick="javascript:transitionToHomePage('index.html')">Back to Arcade</button>
+        </div>
+    </div>
+
+ <!-- --- GAME OVER SCREEN --- -->
+    <div class="pause-menu" id="game-over-screen" style="display: none;">
+        <div class="pause-content game-over-box">
+            <h2 class="game-over-title">GAME OVER</h2>
+            <div class="score-text">
+                <p>Score: <span id="final-score">0</span></p>
+                <p>Best: <span id="final-best">0</span></p>
+            </div>
+            <div class="game-over-btns">
+                <button onclick="playAgain()">Play Again</button>
+                <button onclick="javascript:transitionToHomePage('index.html')">Back to Arcade</button>
+            </div>
+        </div>
+    </div>
+
+
+<!-- --- HUD (Heads Up Display) --- -->
+    <!-- Center Container for Time & Score -->
+    <div class="hud-center">
+        <div class="timer-text">TIME: <span id="time-left">30</span></div>
+        <div class="score-text-hud">SCORE: <span id="score">0</span></div>
+    </div>
+
+    <!-- High Score -->
+    <div class="high-score-box">
+        BEST: <span id="high-score-value">0</span>
+    </div>
+
+    <!-- Pause Button -->
+    <button class="pause-btn" id="pause-btn">||</button>
+
+    <!-- Sound Button -->
+    <button class="sound-btn" id="sound-btn">🔊</button>
+
+    <!-- Game Logic -->
+    <script src="JS/duck-hunt.js"></script>
+
+
+    <script src="JS/transition.js"></script>
+</body>
+</html>

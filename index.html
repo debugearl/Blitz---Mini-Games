@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | BLITZ</title>
+
+    <link rel="stylesheet" href="CSS/Main.css" />
+    <link rel="stylesheet" href="CSS/navbar.css" />
+
+    <link rel="icon" type="image/png" href="images/logo.jpg" />
+
+    <script src="js/transition.js"></script>
+  </head>
+  <body>
+    <!-- Page transition effect for smooth animations -->
+    <div id="page-transition"></div>
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="BLITZ Logo" />
+        <h1>BLITZ</h1>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about-us.html">About Us</a>
+        <a href="faq.html">FAQs</a>
+        <a href="minds.html">Minds Behind Blitz</a>
+      </div>
+    </nav>
+
+    <!-- Main hub -->
+    <div class="hub-container">
+      <div class="hub-logo">
+        <img src="images/minigames.png" alt="Mini Games Logo" />
+      </div>
+
+      <div class="hub-games-grid">
+        <!-- GAME 1 -->
+        <div class="hub-game-card">
+          <div class="image-wrapper">
+            <a
+              class="game-link"
+              href="javascript:transitionToPage('flap-tap.html')"
+            >
+              <img src="images/game1.png" class="hub-game-iframe" />
+            </a>
+            <div class="info-container" data-desc="g1">
+              <img src="images/question.png" class="info-btn" />
+            </div>
+          </div>
+          <div class="hub-desc" id="g1">
+            Flap Tap<br />
+            Tap the screen or press the spacebar/arrow up to make the bird flap
+            and avoid the pipes!
+          </div>
+        </div>
+
+        <!-- GAME 2 -->
+        <div class="hub-game-card">
+          <div class="image-wrapper">
+            <a
+              class="game-link"
+              href="javascript:transitionToPage('whack-a-mole.html')"
+            >
+              <img src="images/game2.png" class="hub-game-iframe" />
+            </a>
+            <div class="info-container" data-desc="g2">
+              <img src="images/question.png" class="info-btn" />
+            </div>
+          </div>
+          <div class="hub-desc" id="g2">
+            Whack a Mole
+            <br />Whack moles, avoid bombs, and score big in 40 fast seconds.
+          </div>
+        </div>
+
+        <!-- GAME 3 -->
+        <div class="hub-game-card">
+          <div class="image-wrapper">
+            <a
+              class="game-link"
+              href="javascript:transitionToPage('duck-hunt.html')"
+            >
+              <img src="images/game3.png" class="hub-game-iframe" />
+            </a>
+            <div class="info-container" data-desc="g3">
+              <img src="images/question.png" class="info-btn" />
+            </div>
+          </div>
+          <div class="hub-desc" id="g3">
+            Duck Hunt <br />
+            Shoot as many ducks as you can in 30 seconds!
+          </div>
+        </div>
+
+        <!-- GAME 4 -->
+        <div class="hub-game-card">
+          <div class="image-wrapper">
+            <a
+              class="game-link"
+              href="javascript:transitionToPage('matching-game.html')"
+            >
+              <img src="images/game4.png" class="hub-game-iframe" />
+            </a>
+            <div class="info-container" data-desc="g4">
+              <img src="images/question.png" class="info-btn" />
+            </div>
+          </div>
+          <div class="hub-desc" id="g4">
+            Meme Matching Game<br />
+            Flip over two cards at a time and try to find all the matching
+            pairs!
+          </div>
+        </div>
+
+        <!-- GAME 5 -->
+        <div class="hub-game-card">
+          <div class="image-wrapper">
+            <a
+              class="game-link"
+              href="javascript:transitionToPage('stack-block.html')"
+            >
+              <img src="images/game5.png" class="hub-game-iframe" />
+            </a>
+            <div class="info-container" data-desc="g5">
+              <img src="images/question.png" class="info-btn" />
+            </div>
+          </div>
+          <div class="hub-desc" id="g5">
+            Stack Block
+            <br />Stack the moving blocks as high as you can!
+          </div>
+        </div>
+
+        <!-- GAME 6 -->
+        <div class="hub-game-card">
+          <div class="image-wrapper">
+            <a
+              class="game-link"
+              href="javascript:transitionToPage('love-calculator.html')"
+            >
+              <img src="../images/game6.png" class="hub-game-iframe" />
+            </a>
+            <div class="info-container" data-desc="g6">
+              <img src="images/question.png" class="info-btn" />
+            </div>
+          </div>
+          <div class="hub-desc" id="g6">
+            Love Calculator<br />
+            Enter your name and your crush's name to see the chance that this
+            relationship will work out!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script for toggling descriptions -->
+    <script>
+      const infoButtons = document.querySelectorAll(".info-container");
+
+      infoButtons.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const id = btn.getAttribute("data-desc");
+          const desc = document.getElementById(id);
+
+          // Close other descriptions
+          document.querySelectorAll(".hub-desc").forEach((d) => {
+            if (d !== desc) d.classList.remove("show");
+          });
+
+          // Toggle clicked description
+          desc.classList.toggle("show");
+        });
+      });
+
+      // Close descriptions on clicking outside
+      document.addEventListener("click", () => {
+        document
+          .querySelectorAll(".hub-desc")
+          .forEach((d) => d.classList.remove("show"));
+      });
+
+      // Loads screen smoothly
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+      });
+    </script>
+  </body>
+</html>

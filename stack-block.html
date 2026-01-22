@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Block</title>
+    
+    <link rel="icon" type="image/png" href="images/Stack-Block_Image/stack-icon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/stack-block.css">
+</head>
+
+<body>
+    <!-- Page transition effect for smooth animations -->
+    <div class="fade-overlay"></div>
+
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Game Container -->
+    <div id="gameContainer"></div>
+
+    <!-- START SCREEN / MAIN MENU -->
+    <div id="instructions" class="start-screen">
+        <h1 class="floating-title">Stack Block</h1>
+        <div class="message messageStyle">
+            <span>Stack the moving blocks as high as you can!</span>
+            <p>
+                <span style="color: #4c6135;">Space</span>,
+                <span style="color: #4c6135;">Click</span> to control
+            </p>
+            <button id="startBtn" class="start-btn">START</button>
+            <button id="backBtn" class="back-btn"><img src="images/Stack-Block_Image/back_stack-block.png" alt="Back"></button>
+        </div>
+    </div>
+
+    <!-- Score -->
+    <div id="score" class="score">0</div>
+
+    <!-- Best Score -->
+    <div id="bestScore" class="high-score-box">
+        Best: <span id="high-score-value">0</span>
+    </div>
+
+    <!-- SOUND BUTTON -->
+    <button id="sound-btn" class="sound-btn"></button>
+
+    <!-- PAUSE BUTTON -->
+    <button class="pause-btn" id="pauseBtn"></button>
+
+    <!-- PAUSE MENU -->
+    <div class="pause-menu" id="pauseMenu">
+        <div class="pause-content">
+            <h2>Game Paused</h2>
+            <button id="resumeBtn" class="pause-option">Resume</button>
+            <button id="restartBtn" class="pause-option">Restart</button>
+            <button id="mainMenuBtn" class="pause-option">Main Menu</button>
+        </div>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="gameOver" class="pause-menu">
+        <div class="game-over-box">
+            <h2 class="game-over-title">GAME OVER</h2>
+            <div class="score-text">
+                <p>Score: <span id="finalScore">0</span></p>
+                <p>Best Score: <span id="bestScoreGameOver">0</span></p>
+            </div>
+            <div class="game-over-btns">
+                <button id="gameOverRestart">Play Again</button>
+                <button id="gameOverMainMenu">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
+
+    <!-- Game Script -->
+    <script src="JS/stack-block.js"></script>
+
+</body>
+</html>

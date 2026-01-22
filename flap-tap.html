@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/flap-tap_images/icon_flap-tap.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Flap Tap Game</title>
+    <link rel="stylesheet" href="CSS/flap-tap.css">
+    <script src="JS/flap-tap.js" defer></script>
+</head>
+<body>
+    <!-- Page transition effect for smooth animations -->
+    <div class="fade-overlay"></div>
+    
+    <!-- Background for the game -->
+    <div class="background"></div>
+    
+    <!-- Main bird character -->
+    <img src="images/flap-tap_images/bird_flap-tap.png" alt="bird-img" class="bird" id="bird-1">
+    
+    <!-- Start screen with logo and instructions -->
+    <div class="start-screen" id="start-screen">
+        <img src="images/flap-tap_images/logo_flap-tap.png" class="main-logo" id="main-logo" alt="Flap Tap Logo">
+        
+        <div class="message">
+            <span style="color: rgb(0, 20, 3);">Space</span> or <span style="color: rgb(0, 20, 3);">Click</span> To Start Game
+            <p>
+                <span style="color: red;">Space</span>, 
+                <span style="color: red;">Click</span> or 
+                <span style="color: red;">&uarr;</span> to control
+            </p>
+        </div>
+    </div>
+
+    <!-- Score display -->
+    <div class="score">
+        <span class="score_val"></span>
+    </div>
+
+    <!-- High score display -->
+    <div class="high-score-box">
+        Best:<span id="high-score-value">0</span>
+    </div>
+    
+    <!-- Sound control button -->
+    <button id="sound-btn" class="sound-btn">🔊</button>
+
+    <!-- Pause button -->
+    <button class="pause-btn" id="pause-btn"></button>
+
+    <!-- Pause menu -->
+    <div class="pause-menu" id="pause-menu">
+        <div class="pause-content">
+            <h2>Game Paused</h2>
+            <button id="resume-btn" class="pause-option">Resume</button>
+            <button id="menu-btn" class="pause-option">Back to Arcade</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meme Matching</title>
+    <link rel="icon" href="images/matching-game_images/MemoryIcon.png" />
+
+    <!-- Link to main CSS for styling the game -->
+
+    <link rel="stylesheet" href="/CSS/matching-game.css" />
+  </head>
+
+  <body>
+    <!-- Page transition effect for smooth animations -->
+    <div class="fade-overlay"></div>
+
+    <!-- Game Container -->
+    <div class="container">
+      <!-- Game Title -->
+      <h1>MEME MATCHING GAME</h1>
+
+      <!-- Instructions -->
+      <p class="instructions">
+        Welcome to the Meme Matching Game! Flip over two cards at a time and try
+        to find all the matching pairs.
+        <br />
+        But hurry — ⏰ time’s ticking, so match fast before the 30 seconds timer
+        runs out!
+      </p>
+
+      <!-- Game Info: Start button, timer, and best score display -->
+      <div id="info">
+        <button id="start-game">Start Game</button>
+        <p id="timer">Time: 0s</p>
+        <p id="best-time">Best Time: --</p>
+      </div>
+
+      <!-- Game Board -->
+      <div id="game-board" class="game-board">
+        <!-- Cards will appear here -->
+      </div>
+    </div>
+
+    <!-- Custom Alert Box -->
+    <div id="customAlert" class="alert-box">
+      <div class="alert-content">
+        <h2>🎉 Congratulations! 🎉</h2>
+        <p id="alertMessage">You found all the matching cards!</p>
+        <button id="play-again-btn">Play Again</button>
+        <button id="back-menu-btn">Back to Arcade</button>
+      </div>
+    </div>
+
+    <!-- Sound control button -->
+    <button id="sound-btn" class="sound-btn">🔊</button>
+
+    <!-- Pause Button -->
+    <button class="pause-btn" id="pause-btn"></button>
+
+    <!-- Pause Menu -->
+    <div class="pause-menu" id="pause-menu">
+      <div class="pause-content">
+        <h2>Game Paused</h2>
+        <button id="resume-btn" class="pause-option">Resume</button>
+        <button id="menu-btn" class="pause-option">Back to Arcade</button>
+      </div>
+    </div>
+
+    <!-- Link to main JS file -->
+    <script src="js/matching-game.js"></script>
+  </body>
+</html>

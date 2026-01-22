@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Whack a Mole</title>
+    <link rel="icon" type="image/png" href="../images/whack-a-mole-images/hammer.png"/>
+    <link rel="stylesheet" href="css/whack-a-mole.css">
+    <script src="JS/whack-a-mole.js"></script>
+</head>
+
+<body>
+    <!-- Page transition effect for smooth animations -->
+    <div class="fade-overlay"></div>
+    
+    <!-- Background layer -->
+    <div class="background"></div>
+
+    <!-- Best score display -->
+    <div id="bestScoreDisplay">Best: 0</div>
+
+    <!-- Sound toggle button -->
+    <button id="sound-btn" class="sound-btn">🔊</button>
+
+    <!-- Back button to return to main menu -->
+    <button id="backBtn" class="back-btn">
+        <img src="../images/whack-a-mole-images/whack-back-button.png" alt="Back">
+    </button>
+
+    <!-- Pause button -->
+    <button id="pauseBtn">
+        <img src="../images/whack-a-mole-images/whack-pause-button.png" alt="pause" class="pause-icon">
+    </button>
+
+    <!-- Overlay displayed when game is paused -->
+    <div id="pauseOverlay"></div>
+    <div id="pauseScreen" class="pause-box">
+        <h1>Game Paused</h1>
+    
+        <button id="resumeBtn">Resume</button>
+        <button id="pauseMenuBtn">Back to Main Menu</button>
+    </div>    
+
+    <!-- Game title graphics -->
+    <img src="../images/whack-a-mole-images/whac-a-mole-text.png" class="mole-text2" id="mole-text2" alt="whac-a-mole" >
+
+    <!-- Main menu content -->
+    <div class="main-menu-content">
+        <img src="../images/whack-a-mole-images/whac-a-mole-text.png" class="mole-text" id="mole-text" alt="whac-a-mole" >
+        
+        <!-- Gameplay instructions -->
+        <div class="message messageStyle" id="instructions"> 
+            <h3>HOW TO PLAY</h3>
+            <ul>
+              <li>🔨 Whack the mole when it pops up — <em>+10 points</em>.</li>
+              <li>💣 Don't hit the bomb — one tap and it’s <span style="color: red;">GAME OVER.</span></li>
+              <li>⏱️ You only have <span style="color: green;">40 seconds!</span></li>
+              <li>⚡ Moles speed up over time, so be fast and stay focused!</li>
+            </ul>
+        </div>   
+
+        <!-- Start button -->
+        <button id="startBtn" class="hammer-btn">
+            <span class="hammer-head">PLAY</span>
+        </button>
+    </div>
+    
+    <!-- Timer and current score display -->
+    <h2 id="timer">Time left: 40s</h2> 
+    <h2 id="score">Current Score: 0</h2>
+    
+    <!-- Game board where moles appear -->
+    <div id="board"></div>
+
+     <!-- Game Over screen -->
+    <div id="gameOverScreen" class="game-over-box">
+        <h1>Game Over</h1>
+        <p id="finalScore">Score: 0</p>
+        <p id="bestScore">Best Score: 0</p>
+
+        <button id="playAgainBtn">Play Again</button>
+        <br>
+        <button id="menuBtn"> Back to Main Menu</button>
+    </div>
+
+    <!-- Preload assets -->
+    <div class="preload"></div>
+
+    <!-- Audio elements for game sounds and background music -->
+    <audio id="bgMusicMenu" src="../sounds/whack-a-mole-sounds/main-menu.mp3" loop></audio>
+    <audio id="bgMusicInGame" src="../sounds//whack-a-mole-sounds/ingame.mp3" loop></audio>
+    <audio id="hitSound" src="../sounds/whack-a-mole-sounds/Hit.mp3" preload="auto"></audio>
+    <audio id="boomSound" src="../sounds/whack-a-mole-sounds/Boom.mp3" preload="auto"></audio> 
+</body>
+</html>
