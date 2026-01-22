@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Reset default margin and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0a0a20;
+    color: #fff;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+/* Header section with background image */
+.minds-header {
+    text-align: center;
+    padding: 250px 20px;
+    background-image: url('../images/minds/background1.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
+
+/* Dark overlay for header readability */
+.minds-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 0;
+}
+
+/* Header title styling */
+.minds-header h1 {
+    position: relative;
+    font-size: 70px;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+    z-index: 2;
+    text-align: center;
+    transform: translateY(60px);
+}
+
+/* Bottom fade gradient for smooth transition */
+.minds-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(
+        to bottom,
+        rgba(10,10,32,0) 0%,
+        rgba(10,10,32,0.6) 60%,
+        rgba(10,10,32,1) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Container holding all team members */
+.minds-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+
+/* Individual team member card */
+.minds-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect for member card */
+.minds-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255,255,255,0.2);
+}
+
+/* Member image inside card */
+.minds-card img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+/* Member name below image */
+.minds-name {
+    display: block;
+    padding: 15px 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background-color: rgba(18, 32, 64, 0.9);
+}
+
+/* Tablet responsive adjustments */
+@media (max-width: 900px) {
+    .minds-container {
+        display: grid; /* make sure it's grid */
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+
+    .minds-card img {
+        height: 470px; 
+        width: auto;
+        max-width: 100%;
+        object-fit: cover;
+    }
+
+    .minds-name {
+        font-size: 16px;
+    }
+
+    .minds-header h1 {
+        font-size: 50px; 
+    }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 600px) {
+    .minds-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 15px;
+    }
+
+    .minds-card img {
+        height: 370px; 
+        width: auto;
+        max-width: 100%;
+        object-fit: cover;
+    }
+
+    .minds-name {
+        font-size: 14px;
+        padding: 12px 10px;
+    }
+
+    .minds-header h1 {
+        font-size: 38px; 
+        padding: 10px 15px;
+        text-align: center;
+    }
+}

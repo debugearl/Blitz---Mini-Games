@@ -1,0 +1,985 @@
+/* Base styles for HTML and body */
+html, body {
+   
+    overflow-y: hidden;
+    overflow-x: hidden;
+    
+    height: 100%;
+
+    text-align: center;
+}
+
+/* Fixed game background */
+.background {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw;  
+    height: 100vh;
+    background: url("../images/whack-a-mole-images/whac-a-mole-bg2.png") no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+/* White fade overlay for transitions */
+.fade-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+.fade-overlay.active {
+  opacity: 1;
+}
+
+/* Back button styling and hover effect */
+.back-btn {
+    position: fixed;
+    top: -47px;
+    left: -27px; 
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 9998;
+}
+
+.back-btn img {
+    width: 200px; 
+    height: auto;
+    pointer-events: none; 
+    transition: 0.2s ease; 
+
+}
+
+.back-btn:hover img {
+    transform: scale(1.2);
+    filter: brightness(1.2); 
+}
+
+.back-btn.hidden {
+    display: none;
+}
+
+/* Pause button styling */
+#pauseBtn {
+    position: fixed;
+    top: -50px;
+    left: -30px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 9998;
+
+    width: 200px;
+    height: 200px;
+
+    display: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+#pauseBtn:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2); 
+}
+
+#pauseBtn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Pause overlay behind pause menu */
+#pauseOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5); 
+    z-index:9998;                
+    display: none;                
+}
+
+/* Pause menu box styling */
+.pause-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background: black;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    padding: 120px;
+    padding-right: 140px;
+    padding-left: 140px;
+    width: 500px;
+    border-radius: 22px;
+    border: 3px solid rgba(255,255,255,0.12);
+    color: white;
+    display: none;
+    z-index: 9998;
+
+    text-align: center;
+    font-family: "Century Gothic", sans-serif; 
+
+    overflow: hidden;
+}
+
+/* Sweep animation effect */
+.pause-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;        
+    width: 50%;       
+    height: 100%;
+    background: rgba(255,255,255,0.2); 
+    pointer-events: none;
+    animation: sweep 8s linear infinite;
+    z-index: -1;     
+}
+
+@keyframes sweep {
+    0% { left: -75%; }
+    100% { left: 125%; }
+}
+
+/* Pause menu texts and buttons */
+.pause-box h1 {
+    font-size: 70px;
+    margin-top: -60px;
+    margin-bottom: 20px;
+    color: #ffdd77;
+    text-shadow: 2px 2px 0 #6b2e09;
+    z-index: 2;
+}
+
+.pause-box button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 14px;
+    border-radius: 12px;
+    border: none;
+    font-family: "Century Gothic", sans-serif; 
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 2;
+}
+
+#resumeBtn {
+    background: #ffdd77;
+    font-size: 30px;
+    height: 80px;
+}
+
+#pauseMenuBtn {
+    background: #ffdd77;
+    font-size: 30px;
+    height: 80px;
+    margin-bottom: -100px;
+}
+
+#resumeBtn:hover,
+#pauseMenuBtn:hover {
+    box-shadow: 0 0 6px rgba(255, 255, 255, 1); 
+    transform: scale(1.05); 
+    transition: all 0.25s ease-in-out;
+}
+
+.pause-box button:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+/* Game cursor styling */
+.game-cursor {
+    cursor: url("../images/whack-a-mole-images/hammer.png"), auto;
+}
+
+/* Best score display styling */
+#bestScoreDisplay {
+    position: fixed;
+    top: 10px;  
+    right: 10px;
+    font-family: "Century Gothic", sans-serif; 
+    font-size: clamp(30px, 5vh, 80px);
+    color: #ffdd77;
+    text-shadow: 2px 2px 0 #6b2e09;
+    z-index: 9998;
+    font-weight: bold;
+}
+
+/* Main menu layout */
+.main-menu-content {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    gap: 90px; 
+    pointer-events: none; 
+    z-index: 10;
+}
+
+/* Game title/logo animation */
+.mole-text { 
+    width: 70vw;
+    max-width: 500px;   
+    height: auto; 
+    animation: floatLogo 2s ease-in-out infinite; 
+    transform: scale(1.3);
+    pointer-events: auto;
+    margin: 0;
+    flex-shrink: 0;
+} 
+
+.mole-text2 { 
+    width: 80vw;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;    
+    height: auto; 
+    margin-top:80px; 
+    margin-bottom: 10px; 
+    animation: floatLogo 2s ease-in-out infinite; 
+    transform: scale(1.3);
+    display: none;
+    z-index: 1;
+    position: relative;
+} 
+
+/* Game messages style */
+.messageStyle{
+    max-width: 500px;
+    padding: 18px 20px;
+    background: rgba(0,0,0,0.6);
+    color: #ffffff;
+    border-radius: 14px;
+    border: 3px solid rgba(255,255,255,0.12);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    font-family: "Century Gothic", sans-serif; 
+    transform: scale(1.5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+    pointer-events: auto;
+    width: 80vw;
+  }
+  
+  .messageStyle h3{
+    margin: 0 0 10px 0;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: #ffdd77;
+    text-shadow: 2px 2px 0 #6b2e09;
+  }
+  
+  .messageStyle ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px 0;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  
+  .messageStyle li strong{ font-weight: 700; }
+  .messageStyle li em{ font-style: normal; color: #ffd97d; }
+
+
+  .messageStyle:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Game board container for mole holes */
+#board {
+    width: 50vw;        
+    height: 550vw;        
+    max-width: 440px;     
+    max-height: 440px;
+    max-height: 50vh;
+    max-width: 50vh;
+    margin: 0 auto;
+    margin: 0 auto;
+    display: none;
+    flex-wrap: wrap;
+    background: url("../images/whack-a-mole-images/soil.png");
+    background-size: cover;
+    border: 3px solid white;
+    border-radius: 25px;
+    
+}
+
+#board div {
+    width: 33.33%;
+    height: 33.33%;
+    background-image: url("../images/whack-a-mole-images/mole-hole.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#board div img {
+    width: 105%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Score label styling*/
+h2 {
+    margin: 0 0 10px 0;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #6b2e09;
+    font-family: "Century Gothic", sans-serif; 
+    font-size: 40px;
+    margin-top: 0.5px;
+}
+
+/* Game start button styling */
+#startBtn {
+    font-family: "Century Gothic", sans-serif; 
+    font-size: 32px;
+    padding: 15px 60px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    position: relative;
+    background: linear-gradient(#ffe066, #ffbb00);
+    color: white;
+    bottom: initial;
+    box-shadow: 
+        0px 8px 0px #d49600,
+        0px 10px 20px #00000040;
+    left: initial;
+    transition: 0.1s;
+    pointer-events: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+#startBtn:active {
+    transform: none;
+    box-shadow: 
+        0px 4px 0px #d49600,
+        0px 6px 10px #00000040;
+}
+
+#board, h2 {
+    display: none;
+}
+
+/* Hammer button styling */
+.hammer-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hammer-btn:hover {
+    transform: scale(1.15);
+    filter: brightness(1.2); 
+}
+
+/* Hammer head stlyling */
+.hammer-head {
+    display: inline-block;
+    background: #c68c35;      
+    padding: 20px 60px;
+    border-radius: 15px;
+    font-family: "Century Gothic", sans-serif; 
+    font-size: 40px;
+    color: white;
+    border: 6px solid #b2792f;
+    position: relative;
+    box-shadow: 
+        0px 8px 0px #8a571f,
+        0px 10px 20px #00000040;
+    transition: 0.1s;
+    text-shadow: 2px 2px 0 #6b2e09;
+}
+
+.hammer-head:before,
+.hammer-head:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 60px;
+    background: #ffcc33;
+    border: 5px solid #e0a800;
+    border-radius: 10px;
+}
+
+.hammer-head:before {
+    left: -30px;
+}
+
+.hammer-head:after {
+    right: -30px;
+}
+
+/* Hammer handle */
+.hammer-btn::after {
+    content: "";
+    position: absolute;
+    top: 95px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 150px;
+    background: #c68c35;
+    border: 5px solid #b2792f;
+    border-radius: 12px;
+}
+
+.hammer-btn:active .hammer-head {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Preload assets */
+.preload {
+    background: url("../images/whack-a-mole-images/whac-a-mole-bg4.png") no-repeat -9999px -9999px;
+}
+
+/* Game over screen styling */
+.game-over-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.8);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    color: white;
+    width: 300px;
+    font-family: "Century Gothic", sans-serif; 
+    border: 3px solid #fff;
+    text-shadow: 0px 1.5px 0 #000000;
+}
+
+.game-over-box button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    font-family: "Century Gothic", sans-serif; 
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#playAgainBtn {
+    background: #ffdd77;
+    width: 90%; 
+    font-size: 25px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    color: rgb(0, 0, 0);
+    transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#menuBtn {
+    background: #ffdd77;
+    width: 90%; 
+    font-size: 25px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    color: rgb(0, 0, 0);
+    transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#playAgainBtn:hover,
+#menuBtn:hover {
+    background-color: #ffe38e;             
+    cursor: pointer;
+}
+
+#gameOverScreen {
+    width: 90%;               
+    max-width: 800px;         
+    padding: 30px;            
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    text-align: center;
+    display: none;
+
+    border: 3px solid rgba(255,255,255,0.12);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+#gameOverScreen h1 {
+    font-size: 100px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    color: red;
+    text-shadow: 0px 1.5px 0 #000000;
+}
+
+#gameOverScreen p {
+    font-size: 50px;
+    margin: 8px 0;
+    color: #ffdd77;
+    font-weight: bold;
+}
+
+.gameOverBtns {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gameOverBtns button {
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Sound button fixed position */
+.sound-btn {
+    position: fixed;
+    bottom: 10px;
+    left: 1vw;
+    width: clamp(40px, 6vh, 80px);
+    height: clamp(40px, 6vh, 80px);
+    font-size: clamp(20px, 3vh, 40px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    color: white;
+    border: 2px solid #4c6135;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9998;
+    transition: 0.2s;
+    transform: none !important;
+}
+
+.sound-btn:active {
+    transform: scale(0.85);  
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 600px) {
+
+    body {
+        background-size: cover;
+        background-position: center;
+        overflow-x: hidden;
+    }
+
+    h2 {
+        margin: 0 0 10px 0;
+        font-size: 30px;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-shadow: 2px 2px 0 #6b2e09;
+        font-family: "Century Gothic", sans-serif; 
+        margin-top: 0.5px;
+    }
+
+    .back-btn {
+        position: fixed;
+        top: -47px;
+        left: -27px; 
+        padding: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 9998;
+    }
+    
+    .back-btn img {
+        width: 120px; 
+        height: auto;
+        pointer-events: none; 
+        transition: 0.2s ease; 
+        margin-top: 20px;
+    }
+
+    #pauseBtn {
+        width: 110px;
+        height: 110px;
+        top: -20px;
+        left: -20px;
+    }
+
+    #bestScoreDisplay {
+        font-size: 3vh;
+        top: 2vh;
+        right: 2vw;
+        margin-left: 200px;
+    }
+
+    .main-menu-content {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        gap: 50px; 
+        pointer-events: none; 
+        z-index: 10;
+    }
+
+    .mole-text {
+        transform: scale(1);
+        margin-top: 0;
+        margin-bottom: -20px;
+        width: 90vw;
+    }
+
+    .mole-text2 {
+        transform: scale(1);
+        margin-top: 50px;
+        width: 90vw;
+    }
+
+    .messageStyle {
+        transform: scale(1);
+        padding: 15px;
+        max-width: 85vw;
+        margin: 0;
+    }
+
+    .messageStyle h3 {
+        font-size: 20px;
+    }
+
+    .messageStyle ul {
+        font-size: 14px;
+    }
+
+    #startBtn {
+        bottom: initial;
+        padding: 10px 35px;
+        font-size: 22px;
+        border-radius: 30px;
+        transform: none;
+        margin: 0;
+        box-shadow: 
+            0px 6px 0px #d49600,
+            0px 10px 15px #00000040;
+    }
+
+    #board {
+        width: 80vw;
+        height: 80vw;
+        border-radius: 20px;
+        margin-top: 50px;
+    }
+
+    #board div img {
+        width: 106%;
+    }
+
+    .pause-box {
+        width: 85vw;
+        padding: 40px 20px;
+        border-radius: 16px;
+        transform: translate(-50%, -50%);
+    }
+
+    .pause-box h1 {
+        font-size: 40px;
+        margin-top: -10px;
+    }
+
+    .pause-box button {
+        font-size: 20px;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    #resumeBtn, 
+    #pauseMenuBtn {
+        height: 60px;
+        font-size: 24px;
+    }
+
+    #gameOverScreen {
+        width: 90vw;           
+        max-width: 400px;      
+        padding: 5px;         
+        border-radius: 16px;
+    }
+
+    #gameOverScreen h1 {
+        font-size: 50px;
+    }
+
+    #gameOverScreen p {
+        font-size: 28px;
+    }
+
+    #playAgainBtn, #menuBtn {
+        font-size: 19px;
+        width: 75%;
+    }
+
+    .hammer-btn{
+        margin: 0;
+    }
+    .hammer-head {
+        font-size: 26px;
+        padding: 15px 35px;
+    }
+
+    .hammer-btn::after {
+        height: 90px;
+        width: 20px;
+    }
+
+    .sound-btn {
+        position: fixed;
+        bottom: 2vh;
+        left: 2vw;
+        width: 6vh;   
+        height: 6vh;
+        font-size: 3vh;
+        transform: none !important;
+    }
+}
+
+/* Landscape phone layout */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: flex-start;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        padding-top: 5px;
+    }
+
+    h2 {
+        position: relative; 
+        font-size: 3.5vh; 
+        flex-shrink: 0; 
+        margin: -5px 0 5px 0;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-shadow: 2px 2px 0 #6b2e09;
+        font-family: "Century Gothic", sans-serif; 
+    }
+
+    .mole-text{ 
+        transform: scale(0.6);
+        margin-bottom: -30px;
+    }
+
+    .mole-text2 { 
+        transform: scale(0.6);
+        margin-top: -3vh;
+        margin-bottom: -3vh;
+    }
+    
+    .back-btn {
+        position: fixed;
+        top: -47px;
+        left: -27px; 
+        padding: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 9998;
+    }
+    
+    .back-btn img {
+        width: 120px; 
+        height: auto;
+        pointer-events: none; 
+        transition: 0.2s ease; 
+        margin-top: 20px;
+    }
+    
+    .messageStyle {
+        transform: scale(0.8);
+        max-width: 60vw;
+        padding: 10px;
+        margin-bottom: -10px;
+    }
+
+    #board {
+        width: 55vh;
+        height: 55vh;
+        max-width: 65vw;
+        max-height: 55vh;
+        margin-top: 1vh;
+        margin: 5px auto;
+        border-radius: 20px;
+        flex-grow: 1;
+    }
+
+    #board div {
+        width: 33.33%;
+        height: 33.33%;
+    }
+
+    #board div img {
+        width: 105%;
+        height: 100%;
+    }
+
+    #bestScoreDisplay {
+        font-size: 20px;
+        margin-left: 200px;
+        right: 2vw;
+        top: 3vh;
+    }
+
+    .main-menu-content {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex; 
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        gap: 0px; 
+        pointer-events: none; 
+        z-index: 10;
+    }
+
+    .hammer-btn{
+        margin: 0;
+    }
+
+    .hammer-head {
+        font-size: 3.5vh;
+        padding: 1vh 2vw;
+    }
+
+    .hammer-head:before,
+    .hammer-head:after {
+        width: 3vh;
+        height: 7vh; 
+    }
+
+    .hammer-head:before {
+        left: -3vw;
+    }
+
+    .hammer-head:after {
+        right: -3vw; 
+    }
+
+    .hammer-btn::after {
+        top: 13vh;
+        width: 3vh;
+        height: 10vh;
+    }
+
+    #startBtn {
+        position: relative;
+        bottom: initial !important;
+        left: initial;
+        transform: none; 
+        padding: 8px 30px;
+        font-size: 20px;
+    }
+
+    #pauseBtn {
+        width: 110px;
+        height: 110px;
+        top: -20px;
+        left: -20px;
+    }
+    
+    .pause-box {
+        width: 50vw;
+        padding: 40px 20px;
+        border-radius: 16px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .pause-box h1 {
+        font-size: 40px;
+        margin-top: -10px;
+    }
+    
+    .pause-box button {
+        font-size: 20px;
+        padding: 12px;
+        border-radius: 10px;
+    }
+    
+    #resumeBtn, 
+    #pauseMenuBtn {
+        height: 60px;
+        font-size: 24px;
+    }
+
+    #gameOverScreen {
+        width: 50vw;           
+        max-width: 400px;       
+        padding: 3px;         
+        border-radius: 16px;
+    }
+    
+    #gameOverScreen h1 {
+        font-size: 50px;
+    }
+    
+    #gameOverScreen p {
+        font-size: 28px;
+    }
+
+    #playAgainBtn, #menuBtn {
+        font-size: 19px;
+        width: 75%;
+    }
+}

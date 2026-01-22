@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gothic A1", sans-serif;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden; 
+    overflow-y: hidden;
+    background: #111;
+    color: white;
+}
+
+/* White fade overlay for transitions */
+.fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff; 
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease; 
+    z-index: 1000000;
+}
+
+.fade-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+#score,
+#bestScore,
+#pauseBtn,
+#gameOver,
+#pauseMenu,
+#backBtn {
+    display: none;
+}
+
+/* BACKGROUND */
+.background {
+    width: 100%;
+    height: 100%;
+    background: #111;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+}
+
+/* GAME CANVAS */
+#gameContainer canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* START SCREEN */
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* TITLE */
+.floating-title {
+    font-size: clamp(2rem, 8vw, 6rem);
+    color: #35be55;
+    text-align: center;
+    margin-bottom: 3vh;
+    animation: float 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 15px #35be55, 0 0 30px #26953e;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+.message {
+    color: white;
+    font-size: clamp(1rem, 4vw, 2.5rem);
+    text-align: center;
+}
+
+.messageStyle {
+    background: black;
+    padding: clamp(15px, 4vw, 40px);
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* START BUTTON */
+.start-btn {
+    margin-top: clamp(15px, 3vw, 30px);
+    padding: clamp(10px, 3vw, 15px) clamp(20px, 6vw, 40px);
+    font-size: clamp(1rem, 4vw, 2rem);
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #35be55, #26953e, #1e7e34);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(40,167,69,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(40,167,69,0.6);
+}
+
+/* BACK BUTTON */
+.back-btn {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    width: clamp(50px, 8vw, 90px);
+    height: clamp(50px, 8vw, 90px);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.back-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* SCORE */
+.score {
+    position: fixed;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    font-size: clamp(2rem, 6vw, 8vh);
+    font-weight: bold;
+    -webkit-text-stroke: 1px #4c6135;
+    color: white;
+    text-align: center;
+}
+
+/* BEST SCORE */
+.high-score-box {
+    position: fixed;
+    top: 1.5%;
+    right: 2%;
+    color: #4c6135;
+    font-size: clamp(1rem, 3vw, 4vh);
+    font-weight: bold;
+    -webkit-text-stroke: 1px #4c6135;
+    z-index: 20;
+}
+
+/* SOUND BUTTON */
+.sound-btn {
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+    width: clamp(35px, 7vw, 60px);
+    height: clamp(35px, 7vw, 60px);
+    border-radius: 50%;
+    background: #ffffff70;
+    border: 3px solid #4c6135;
+    cursor: pointer;
+    z-index: 20;
+}
+
+/* PAUSE BUTTON */
+.pause-btn {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    width: clamp(50px, 8vw, 90px);
+    height: clamp(50px, 8vw, 90px);
+    background: url("../images/Stack-Block_Image/pause_stack-block.png") no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+}
+
+/* GAME BOARD */
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: clamp(5px, 1vw, 15px);
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 5vh auto;
+}
+
+#board div {
+    background: #2c3e50;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+#board div img {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+/* PAUSE MENU */
+.pause-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000dd;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.pause-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: black;
+    padding: clamp(25px, 3vw, 60px);
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    width: clamp(300px, 35vw, 550px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.pause-content button {
+    width: 100%;
+    padding: clamp(15px, 1.5vw, 25px);
+    margin: clamp(10px, 1vw, 15px) 0;
+    background: linear-gradient(90deg, #35be55, #26953e, #1e7e34);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(40,167,69,0.4);
+    font-size: clamp(1rem, 1.3vw, 1.6rem);
+}
+
+/* MOBILE OVERRIDE */
+@media (max-width: 768px) {
+    .pause-content {
+        width: 90vw;
+        max-width: 350px;
+        padding: clamp(20px, 5vw, 40px);
+    }
+
+    .pause-content button {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        padding: clamp(14px, 4vw, 24px) 0;
+    }
+}
+
+/* GAME OVER */
+.game-over-box {
+    background: black;
+    padding: clamp(15px, 3vw, 30px);
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-over-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: white;
+}
+
+.score-text p {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: white;
+}
+
+.score-text p:last-child {
+    color: #35be55;
+}
+
+.game-over-btns {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-over-btns button {
+    width: 100%;
+    padding: clamp(8px, 2vw, 12px) 0;
+    border: none;
+    background: linear-gradient(90deg, #35be55, #26953e, #1e7e34);
+    color: white;
+    border-radius: 10px;
+    margin-top: clamp(5px, 2vw, 10px);
+    font-size: clamp(0.8em, 2vw, 1em);
+}
+
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100vw;
+    }
+
+    /* CURRENT SCORE */
+    .score {
+        font-size: clamp(3rem, 10vw, 12vh); /* bigger on mobile */
+        top: 5%;
+    }
+
+    /* BEST SCORE */
+    .high-score-box {
+        font-size: 15px;
+        top: 7%;
+        right: 3%;
+    }
+
+    /* PAUSE BUTTON */
+    .pause-btn {
+        width: clamp(80px, 15vw, 100px);
+        height: clamp(80px, 15vw, 100px);
+        top: 3%;
+        left: 3%;
+    }
+
+    /* PAUSE MENU OVERLAY */
+    .pause-content {
+        width: 90%;
+        max-width: 400px;
+        padding: clamp(25px, 6vw, 50px);
+        border-radius: 20px;
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+    }
+
+    .pause-content button {
+        font-size: clamp(1.2rem, 4vw, 2rem);
+        padding: clamp(15px, 4vw, 25px) 0;
+        margin: clamp(10px, 3vw, 20px) 0;
+    }
+
+    /* GAME OVER BOX */
+    .game-over-box {
+        width: 90%;
+        max-width: 400px;
+        padding: clamp(20px, 5vw, 40px);
+    }
+
+    .game-over-title {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+    }
+
+    .score-text p {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .game-over-btns button {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        padding: clamp(15px, 4vw, 25px) 0;
+        margin-top: clamp(10px, 3vw, 20px);
+    }
+
+    /* BOARD ADJUSTMENTS */
+    #board {
+        width: 95vw;
+        max-width: 450px;
+        gap: clamp(5px, 3vw, 12px);
+    }
+}

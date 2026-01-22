@@ -1,0 +1,409 @@
+/* Reset default margins, paddings, box-sizing, transition, and set main font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Press Start 2P", cursive;
+}
+
+/* Background covering the entire viewport */
+.background {
+    height: 100vh;
+    width: 100vw;
+    background: url('../images/flap-tap_images/bg_flap-tap.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* White fade overlay for transitions */
+.fade-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+.fade-overlay.active {
+  opacity: 1;
+}
+
+/* Player bird styling and position */
+.bird {
+    height: 70px;
+    width: 130px;
+    position: fixed;
+    top: 40vh;
+    left: 30vw;
+    z-index: 100;
+}
+
+/* Pipe sprite styling */
+.pipe_sprite {
+    position: fixed;
+    top: 40vh;
+    left: 100vw;
+    height: 70vh;
+    width: 245px;
+    background: url('../images/flap-tap_images/pipe_flap-tap.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+/* Top pipe rotation */
+.top_pipe {
+    transform: rotate(180deg);
+    transform-origin: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+/* Start screen container */
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;          
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;   
+    z-index: 10;
+}
+
+/* Main logo styling and floating animation */
+.main-logo {
+    width: 600px;       
+    max-width: 80vw;    
+    height: auto;
+    margin-bottom: 30px; 
+    animation: floatLogo 2s ease-in-out infinite;
+}
+
+/* Float animation keyframes for the logo */
+@keyframes floatLogo {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Message text styling */
+.message {
+    color: #018339;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+/* Message card styling */
+.messageStyle {
+    background: #ddd799;
+    padding: 40px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 20px;
+}
+
+/* Score display in center top of the screen */
+.score {
+    position: fixed;
+    top: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 20;
+    font-size: 8vh;
+    font-weight: 100;
+    color: #9be559;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #4c6135;
+}
+
+/* High score box styling */
+.high-score-box {
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    left: auto;
+    color: #9be559;
+    font-size: 4vh;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #4c6135;
+    z-index: 20;
+}
+
+/* Sound button styling */
+.sound-btn {
+    position: fixed;
+    bottom: 15px; 
+    left: 15px;   
+    
+    z-index: 20;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff80;
+    border: 2px solid #4c6135;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s;
+}
+
+/* Sound button click effect */
+.sound-btn:active {
+    transform: scale(0.9);
+}
+
+/* Pause button styling */
+.pause-btn {
+    position: fixed;
+    top: 15px;
+    left: 10px;
+    z-index: 20;
+    width: 100px;
+    height: 100px;
+    background: url('../images/flap-tap_images/pause_flap-tap.png') center center no-repeat;
+    background-size: contain;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0;
+}
+/* Hover effect for pause button */
+.pause-btn:hover { 
+    width: 110px; 
+    height: 110px; 
+}
+
+/* Pause menu overlay */
+.pause-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000da;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Pause content styling */
+.pause-content {
+    position: relative;
+    background: linear-gradient(90deg, #074222 0%, #0b6d36aa 30%);
+    padding: 60px 80px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    color: #fff;
+    width: 500px;
+    min-width: 40%;
+    overflow: hidden;
+}
+
+/* Pause title styling */
+.pause-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Pause menu shine effect */
+.pause-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 100%
+    );
+    z-index: -1; 
+    animation: pauseLightSweep 6s infinite linear;
+}
+
+@keyframes pauseLightSweep {
+    0% {
+        left: -75%;
+    }
+    100% {
+        left: 125%;
+    }
+}
+
+/* Pause menu buttons */
+.pause-content button {
+    width: 80%;
+    padding: 30px 0;
+    margin: 7px 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(90deg, #35be55, #26953e, #1e7e34); 
+    box-shadow: 0 0 18px rgba(40, 167, 69, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pause menu button hover effect */
+.pause-content button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(40, 167, 69, 0.7);
+}
+
+/* Game over buttons styling */
+.game-over-box button {
+    width: 100%;        
+    padding: 12px 0;     
+    margin: 8px 0;       
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #efefef;
+    color: #00a84c;
+}
+
+/* Game over container */
+.game-over-box {
+    text-align: center;
+    width: 100%;
+    max-width: 800px; 
+}
+
+/* Game over title */
+.game-over-title {
+    color: red;
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* Game over score text */
+.score-text p {
+    font-size: 2rem;
+    margin: 10px 0;
+    color: #018339; 
+}
+
+/* Game over action buttons */
+.game-over-btns button {
+    width: 100%;
+    padding: 15px;
+    background: white;
+    border: none;
+    margin: 8px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #00a84c;
+}
+
+/* Game over button hover effect */
+.game-over-btns button:hover {
+    background: #f0f0f0;
+}
+
+/* ------------------------- */
+/* Responsive styles for screens <=1080px */
+@media only screen and (max-width: 1080px) {
+    .message { 
+        font-size: 20px; 
+    }
+    .score { 
+        font-size: 5vh; 
+    }
+    .bird { 
+        width: 80px; height: 50px; 
+    }
+    .main-logo {
+        width: 370px;       
+        max-width: 80vw;    
+        height: auto;
+        margin-bottom: 30px; 
+        animation: floatLogo 2s ease-in-out infinite;
+    }
+    .pause-btn { 
+        width: 50px; height: 50px; 
+    }
+    .pause-btn:hover { 
+        width: 55px; height: 55px; 
+    }
+    .high-score-box { 
+        font-size: 2vh;
+    }
+    .pipe_sprite {
+        top: 30vh;
+        left: 80vw;
+        height: 70vh;
+        width: 130px;
+    }
+    .pause-content {
+        width: 85%;         
+        min-width: unset;  
+        padding: 30px 20px;
+    }
+
+    .pause-content h2 {
+        font-size: 1.8rem;  
+        margin-bottom: 15px;
+    }
+
+    .pause-content button {
+        padding: 15px 0;    
+        font-size: 1rem;    
+        width: 90%;         
+    }
+    
+    .game-over-box {
+    text-align: center;
+    width: 100%;
+    max-width: 400px; 
+    }
+
+    .game-over-title {
+        color: red;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .score-text p {
+        font-size: 1rem;
+        margin: 10px 0;
+        color: #018339; 
+    }
+
+    .game-over-btns button {
+        width: 70%;
+        padding: 10px;
+        background: white;
+        border: none;
+        margin: 8px 0;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: .8rem;
+        color: #00a84c;
+    }
+
+    .game-over-btns button:hover {
+        background: #f0f0f0;
+    }
+}

@@ -1,0 +1,317 @@
+/* Background blur layer for the page */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/love-calcu_images/bg_love-calcu.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px) brightness(1);
+  z-index: -1;
+} /* Main body styling with theme */
+body {
+  font-family: "Century Gothic", Arial, sans-serif;
+  text-align: center;
+  background-image: url("../images/love-calcu_images/bg_love-calcu.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+} /* White fade overlay for transitions */
+.fade-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+.fade-overlay.active {
+  opacity: 1;
+} /* Back button */
+#back-btn {
+  width: 80px;
+  height: 80px;
+  background-image: url("../images/love-calcu_images/back_love-calculator.png");
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  z-index: 1000;
+}
+#back-btn:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+} /* Popup background overlay */
+#confirm-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 150, 170, 0.35);
+  backdrop-filter: blur(3px); /* Center popup */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Hidden by default */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+} /* Actual popup container */
+#confirm-content {
+  background: linear-gradient(135deg, #ffe0eb, #ffb7d5);
+  padding: 25px 35px;
+  border-radius: 18px;
+  width: 330px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 100, 150, 0.45),
+    0 4px 15px rgba(255, 80, 130, 0.35), inset 0 0 12px rgba(255, 200, 215, 0.9);
+  animation: popupSlide 0.45s ease;
+} /* Popup appear animation */
+@keyframes popupSlide {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+#confirm-content h3 {
+  font-size: 19px;
+  color: #d6336c;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(255, 200, 230, 0.8);
+} /* Shared style for Yes/No buttons */
+.confirm-btn {
+  padding: 12px 22px;
+  margin: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.25s ease;
+} /* YES button */
+#yes-btn {
+  background: #ff3b72;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 60, 110, 0.5);
+}
+#yes-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 30, 90, 0.6);
+} /* NO button */
+#no-btn {
+  background: #ffdde8;
+  color: #d6336c;
+  box-shadow: 0 4px 12px rgba(255, 200, 220, 0.5);
+}
+#no-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 170, 200, 0.6);
+} /* Main content container */
+#content-box {
+  width: 420px;
+  min-height: 520px;
+  background: white;
+  padding: 25px;
+  margin: clamp(20px, 5vh, 60px) auto;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(255, 130, 170, 0.4),
+    inset 0 0 15px rgba(255, 180, 200, 0.6);
+  backdrop-filter: blur(4px);
+  position: relative;
+  animation: fadeIn 0.8s ease;
+} /* Decorative heart above content box */
+#content-box::before {
+  content: "♥";
+  font-size: 45px;
+  color: rgba(255, 120, 160, 0.6);
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+} /* Title styling */
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff3d74;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgba(255, 170, 195, 0.6);
+} /* Paragraph text styling */
+p {
+  font-size: 15px;
+  color: #d6336c;
+  margin-bottom: 15px;
+} /* Label styling */
+label {
+  font-size: 16px;
+  color: #d6336c;
+  font-weight: bold;
+} /* Input field styling */
+input {
+  font-family: "Century Gothic", Arial, sans-serif;
+  width: 85%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 18px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid rgba(255, 150, 180, 0.7);
+  outline: none;
+  font-size: 16px;
+  transition: 0.2s;
+}
+input:focus {
+  border-color: #ff3d74;
+  box-shadow: 0 0 10px rgba(255, 160, 190, 0.8);
+} /* Button styling for calculate and reset */
+#calculate,
+#reset-btn {
+  font-family: "Century Gothic", Arial, sans-serif;
+  font-weight: bold;
+  width: 170px;
+  height: 50px;
+  background: linear-gradient(135deg, #ff6fa8, #ff3d74);
+  color: white;
+  font-size: 20px;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(255, 85, 140, 0.45);
+  transition: 0.25s;
+}
+#calculate:hover,
+#reset-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(255, 60, 115, 0.55);
+} /* Percentage result styling */
+#result-percentage {
+  font-size: 55px;
+  color: #ff1f64;
+  font-weight: bold;
+  margin-top: 10px;
+  text-shadow: 0 0 12px rgba(255, 130, 160, 0.8);
+} /* Comment result styling */
+#result-comment {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 15px;
+} /* Fade-in animation for content box */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} /* Heart animation styling */
+.heart {
+  position: absolute;
+  color: #ff7aa8;
+  font-size: 24px;
+  animation: floatUp 2s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.6);
+  }
+} /* Responsive adjustments for small screens */
+@media (max-width: 480px) {
+  #content-box {
+    width: 90%;
+    margin: 50px auto;
+    padding: 5px;
+    min-height: 480px;
+    border-radius: 20px;
+    top: 25px;
+  }
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  label {
+    font-size: 15px;
+  }
+  input {
+    width: 90%;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  #calculate,
+  #reset-btn {
+    width: 140px;
+    height: 45px;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  #result-message {
+    font-size: 20px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+  }
+  #result-percentage {
+    font-size: 45px;
+    margin-top: 8px;
+  }
+  #result-comment {
+    font-size: 15px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+  }
+  .heart {
+    font-size: 20px;
+  }
+  #back-btn {
+    width: 85px;
+    height: 85px;
+    top: 0px;
+    left: 10px;
+    background-size: contain;
+  }
+  #confirm-content {
+    width: 65%;
+    padding: 20px 25px;
+    border-radius: 15px;
+  }
+  #confirm-content h3 {
+    font-size: 17px;
+    margin-bottom: 15px;
+  }
+  .confirm-btn {
+    width: 45%;
+    padding: 10px 0;
+    font-size: 15px;
+  }
+}

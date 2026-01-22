@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Hub container */
+.hub-container {
+  margin: 0;
+  padding: 50px 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+  background-image: url("../images/background4.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Hub Logo */
+.hub-logo {
+  width: 200px;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.hub-logo img {
+  width: 100%;
+}
+
+/* Grid */
+.hub-games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 80vw;
+}
+
+/* Main card container */
+.hub-game-card {    
+  background: none;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.hub-game-card img {
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* Glare effect (hidden initially) */
+.hub-game-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+  transition: left 0.9s ease, opacity 0.8s ease;
+  pointer-events: none;
+}
+
+/* Hover: image zooms slightly */
+.hub-game-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Hover: glare sweeps across the image */
+.hub-game-card:hover::after {
+  opacity: 1;
+  left: 120%;
+}
+
+
+/* Image wrapper */
+.image-wrapper {
+  position: relative;
+}
+
+.hub-game-iframe {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Info button */
+.info-container {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.info-btn {
+  width: 32px;
+  height: 32px;
+  transition: 0.2s ease;
+}
+
+.info-container:hover .info-btn {
+  filter: drop-shadow(0 0 6px #00aaff) brightness(1.2);
+}
+
+/* Description slide down */
+.hub-desc {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.35s ease;
+  padding: 0 12px;
+  border-radius: 8px;
+  margin-top: 8px;
+  color: white;
+  text-align: center;
+}
+
+/* Show description */
+.hub-desc.show {
+  max-height: 300px;
+  opacity: 1;
+  padding: 12px;
+  transform: translateY(0);
+}
+
+/* Unique background colors */
+#g1 {
+  background: rgba(19, 86, 30, 0.92);
+}
+#g2 {
+  background: rgba(255, 206, 9, 0.92);
+}
+#g3 {
+  background: rgba(88, 73, 63, 0.92);
+}
+#g4 {
+  background: rgba(18, 32, 64, 0.92);
+}
+#g5 {
+  background: rgba(78, 155, 26, 0.92);
+}
+#g6 {
+  background: rgba(137, 0, 0, 0.92);
+}
+
+/* Media Queries */
+@media (max-width: 900px) {
+  .hub-games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hub-logo {
+    margin-top: 120px;
+    margin-bottom: 30px;
+ }
+}
+
+@media (max-width: 600px) {
+  .hub-games-grid {
+    grid-template-columns: 1fr;
+  }
+  .hub-logo {
+    margin-top: 180px;
+    margin-bottom: 30px;
+ }
+}
+
+/* Page Transition Effect */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#page-transition {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: #0a0a20;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: width 0.7s ease, height 0.7s ease;
+}
